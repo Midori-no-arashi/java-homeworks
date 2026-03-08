@@ -2,7 +2,7 @@ package lesson_4;
 
 public class ShapeApp {
     public static void main(String[] args) {
-        System.out.println("========== ГЕОМЕТРИЧЕСКИЕ ФИГУРЫ ==========\n");
+        System.out.println("========= ГЕОМЕТРИЧЕСКИЕ ФИГУРЫ =========\n");
 
         Circle circle = new Circle(5, "Красный", "Черный");
         Rectangle rectangle = new Rectangle(4, 6, "Синий", "Белый");

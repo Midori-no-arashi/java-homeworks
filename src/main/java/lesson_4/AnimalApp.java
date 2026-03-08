@@ -2,7 +2,7 @@ package lesson_4;
 
 public class AnimalApp {
     public static void main(String[] args) {
-        System.out.println("========== ЖИВОТНЫЕ ==========\n");
+        System.out.println("========= ЖИВОТНЫЕ =========\n");
 
         // Создаем собак
         Dog dog1 = new Dog("Бобик");
