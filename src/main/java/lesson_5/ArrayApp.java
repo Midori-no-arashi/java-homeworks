@@ -2,7 +2,7 @@ package lesson_5;
 
 public class ArrayApp {
     public static void main(String[] args) {
-        System.out.println("========= РАБОТА С МАССИВОМ =========\n");
+        System.out.println("========== ЗАДАНИЕ 1-3: РАБОТА С МАССИВОМ 4x4 ==========\n");
 
         String[][] correctArray = {
                 {"1", "2", "3", "4"},
@@ -24,7 +24,7 @@ public class ArrayApp {
                 {"13", "14", "15", "16"}
         };
 
-        System.out.println("ТЕСТ 1: Правильный массив");
+        System.out.println("ТЕСТ 1: Правильный массив 4x4");
         try {
             int sum = processArray(correctArray);
             System.out.println("Сумма всех элементов: " + sum);
@@ -36,7 +36,7 @@ public class ArrayApp {
 
         System.out.println("\n----------------------------------------\n");
 
-        System.out.println("ТЕСТ 2: Массив неправильного размера");
+        System.out.println("ТЕСТ 2: Массив неправильного размера (3x4)");
         try {
             int sum = processArray(wrongSizeArray);
             System.out.println("Сумма всех элементов: " + sum);
@@ -58,7 +58,7 @@ public class ArrayApp {
             System.out.println("Ошибка в данных: " + e.getMessage());
         }
 
-        System.out.println("\n========== ArrayIndexOutOfBoundsException ==========\n");
+        System.out.println("\n========== ЗАДАНИЕ 4: ArrayIndexOutOfBoundsException ==========\n");
 
         System.out.println("ТЕСТ 4: Выход за границы массива");
         try {
@@ -74,7 +74,6 @@ public class ArrayApp {
     public static int processArray(String[][] array)
             throws MyArraySizeException, MyArrayDataException {
 
-        // Проверка размера массива (задание 1)
         if (array.length != 4) {
             throw new MyArraySizeException("Массив должен быть 4x4, а у него " + array.length + " строк");
         }
@@ -112,19 +111,6 @@ public class ArrayApp {
         System.out.println("Пробуем обратиться к элементу с индексом 5...");
 
         int value = numbers[5];
-
         System.out.println("Значение: " + value);
-    }
-}
-
-class MyArraySizeException extends Exception {
-    public MyArraySizeException(String message) {
-        super(message);
-    }
-}
-
-class MyArrayDataException extends Exception {
-    public MyArrayDataException(String message) {
-        super(message);
     }
 }
