@@ -1,6 +1,7 @@
 package mts.by.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,11 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeEach
+    @Step("Запуск браузера и открытие сайта mts.by")
     public void setUp() {
         String[] chromePaths = {
                 "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-                System.getenv("LOCALAPPDATA") + "\\Google\\Chrome\\Application\\chrome.exe"
+                "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
         };
 
         String chromeBinary = null;
@@ -26,13 +27,8 @@ public class BaseTest {
             File file = new File(path);
             if (file.exists()) {
                 chromeBinary = path;
-                System.out.println("Найден Chrome по пути: " + chromeBinary);
                 break;
             }
-        }
-
-        if (chromeBinary == null) {
-            System.out.println("Chrome не найден по стандартным путям, пробуем без указания бинарника");
         }
 
         WebDriverManager.chromedriver().setup();
@@ -43,12 +39,10 @@ public class BaseTest {
         }
         options.addArguments("--start-maximized");
         options.addArguments("--disable-notifications");
-        options.addArguments("--remote-allow-origins=*");
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        System.out.println("Открываем сайт: https://www.mts.by");
         driver.get("https://www.mts.by");
 
         try {
@@ -56,11 +50,10 @@ public class BaseTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Страница загружена. Заголовок: " + driver.getTitle());
     }
 
     @AfterEach
+    @Step("Закрытие браузера")
     public void tearDown() {
         if (driver != null) {
             try {
@@ -69,7 +62,6 @@ public class BaseTest {
                 e.printStackTrace();
             }
             driver.quit();
-            System.out.println("Браузер закрыт");
         }
     }
 }
